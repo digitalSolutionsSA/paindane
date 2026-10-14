@@ -1,0 +1,342 @@
+/* ---------- Motion layer: smooth scroll, reveals, cursor, gallery strip, footer curtain ---------- */
+
+/* Lenis does the smoothing, so the browser's own smooth scroll must be off */
+html.lenis,
+html.lenis body {
+  scroll-behavior: auto !important;
+}
+
+/* Eyebrow labels: the line draws, then the text wipes in after it */
+.eyebrow-anim::before {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.9s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.eyebrow-anim {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.1s cubic-bezier(0.7, 0, 0.2, 1) 0.15s;
+}
+
+.eyebrow-anim.is-in {
+  clip-path: inset(0 -10px 0 0);
+}
+
+.eyebrow-anim.is-in::before {
+  transform: scaleX(1);
+}
+
+/* Giant outlined words drifting behind sections */
+.section--welcome,
+#paindane,
+#pleasure-bay {
+  overflow: clip;
+}
+
+.bg-word {
+  position: absolute;
+  top: clamp(20px, 4vw, 60px);
+  left: 0;
+  z-index: 0;
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 17vw, 16rem);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(48, 75, 102, 0.1);
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+}
+
+.section--sand .bg-word {
+  -webkit-text-stroke-color: rgba(146, 131, 108, 0.22);
+}
+
+.section > .container,
+.section > .features {
+  position: relative;
+  z-index: 1;
+}
+
+.lead[data-scrub-text] {
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+/* Feature cards float at their own pace */
+.feature-card[data-float] {
+  will-change: transform;
+}
+
+/* ---------- Gallery strip ---------- */
+.section--gallery {
+  padding-top: 0;
+}
+
+.strip {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 32px;
+  min-height: 100vh;
+  padding: 90px 0 60px;
+  overflow: hidden;
+}
+
+.strip-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.strip-title {
+  margin: 0;
+  font-size: clamp(2.6rem, 7vw, 6rem);
+  color: var(--white);
+}
+
+.strip-progress {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-display);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.strip-progress i {
+  position: relative;
+  width: 140px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.strip-progress i span {
+  position: absolute;
+  inset: 0;
+  background: var(--sand);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.strip-track {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 0 max(16px, calc((100vw - 1240px) / 2));
+  will-change: transform;
+}
+
+.strip-item {
+  position: relative;
+  flex: none;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #2a3f55;
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.7);
+}
+
+.strip-item--0 {
+  width: 36vw;
+  height: 62vh;
+}
+
+.strip-item--1 {
+  width: 26vw;
+  height: 46vh;
+  align-self: flex-end;
+}
+
+.strip-item--2 {
+  width: 30vw;
+  height: 54vh;
+  align-self: flex-start;
+}
+
+.strip-item img {
+  position: absolute;
+  top: 0;
+  left: -12%;
+  width: 124%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.6s;
+}
+
+.strip-item:hover img {
+  filter: brightness(1.1) saturate(1.15);
+}
+
+.strip-num {
+  position: absolute;
+  left: 18px;
+  bottom: 14px;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--white);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+.gallery-grid {
+  will-change: transform;
+}
+
+@media (max-width: 899px), (prefers-reduced-motion: reduce) {
+  .strip {
+    min-height: 0;
+  }
+
+  .strip-track {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 12px;
+  }
+
+  .strip-item,
+  .strip-item--0,
+  .strip-item--1,
+  .strip-item--2 {
+    width: 78vw;
+    height: 56vw;
+    align-self: center;
+    scroll-snap-align: center;
+  }
+
+  .strip-item img {
+    left: 0;
+    width: 100%;
+  }
+
+  .strip-progress {
+    display: none;
+  }
+}
+
+/* ---------- Cursor ---------- */
+.cursor-ring,
+.cursor-dot {
+  display: none;
+}
+
+.has-cursor .cursor-ring,
+.has-cursor .cursor-dot {
+  display: grid;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 300;
+  pointer-events: none;
+  translate: -50% -50%;
+}
+
+.has-cursor .cursor-ring {
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid #fff;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  transition: width 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), height 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), background 0.35s, border-color 0.35s;
+}
+
+.has-cursor .cursor-ring span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.has-cursor .cursor-ring[data-mode='link'] {
+  width: 64px;
+  height: 64px;
+  background: #fff;
+}
+
+.has-cursor .cursor-ring[data-mode='view'] {
+  width: 96px;
+  height: 96px;
+  mix-blend-mode: normal;
+  border-color: transparent;
+  background: rgba(146, 131, 108, 0.92);
+  backdrop-filter: blur(4px);
+}
+
+.has-cursor .cursor-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sand);
+}
+
+/* Buttons move magnetically, so their own hover lift is switched off */
+.has-cursor .btn {
+  transition: none;
+}
+
+.has-cursor .btn:hover {
+  transform: none;
+}
+
+/* ---------- Footer curtain: the page lifts off to reveal the footer ---------- */
+@media (min-width: 900px) and (min-height: 700px) {
+  .site-main {
+    position: relative;
+    z-index: 1;
+    background: var(--cream);
+    box-shadow: 0 40px 60px -30px rgba(0, 0, 0, 0.45);
+    border-radius: 0 0 48px 48px;
+  }
+
+  .footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eyebrow-anim,
+  .eyebrow-anim::before {
+    clip-path: none;
+    transform: none;
+  }
+}
+
+/* Elements waiting to slide in from the side must never widen the page (clip keeps sticky elements working) */
+.site-main,
+.footer {
+  overflow-x: clip;
+}
+
+/* ---------- Responsive photos (<picture>) filling their frames ---------- */
+.hero-img picture,
+.cta-bg picture,
+.legal-hero-bg picture {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.hero-img img,
+.cta-bg img,
+.legal-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-item picture,
+.feature-media picture,
+.strip-item picture {
+  display: block;
+}
+
+.gallery-item img {
+  height: auto;
+}
