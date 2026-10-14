@@ -106,7 +106,7 @@ export default function Hero() {
       <div className="hero-ocean" ref={canvasHost} aria-hidden="true" />
 
       <div className="hero-content container">
-        <img className="hero-logo" src={logoUrl()} alt={brand.name} width={691} height={304} fetchPriority="high" />
+        <img className="hero-logo" src={logoUrl()} alt={brand.name} width={691} height={304} {...({ fetchpriority: 'high' } as Record<string, string>)} />
         <div className="hero-line" />
         <p className="hero-tagline">
           {brand.tagline.split(' ').map((w, i) => (

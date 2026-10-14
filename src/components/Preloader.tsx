@@ -9,17 +9,17 @@ export default function Preloader() {
     const ctx = gsap.context(() => {
       gsap
         .timeline()
-        .from('.pl-logo', { autoAlpha: 0, y: 20, duration: 0.8, ease: 'power3.out' })
-        .to('.pl-bar span', { scaleX: 1, duration: 0.9, ease: 'power2.inOut' }, '<0.1')
-        .to('.pl-inner', { autoAlpha: 0, y: -20, duration: 0.5 })
-        .to('.pl-panel--top', { yPercent: -100, duration: 1, ease: 'expo.inOut' }, '<0.1')
-        .to('.pl-panel--bottom', { yPercent: 100, duration: 1, ease: 'expo.inOut' }, '<')
+        .from('.pl-logo', { autoAlpha: 0, y: 20, duration: 0.5, ease: 'power3.out' })
+        .to('.pl-bar span', { scaleX: 1, duration: 0.55, ease: 'power2.inOut' }, '<0.05')
+        .to('.pl-inner', { autoAlpha: 0, y: -20, duration: 0.3 })
+        .to('.pl-panel--top', { yPercent: -100, duration: 0.85, ease: 'expo.inOut' }, '<0.05')
+        .to('.pl-panel--bottom', { yPercent: 100, duration: 0.85, ease: 'expo.inOut' }, '<')
         .set(ref.current, { display: 'none' });
     }, ref);
     // Safety net: never let the intro block the page (e.g. in a background tab)
     const fallback = window.setTimeout(() => {
       if (ref.current) ref.current.style.display = 'none';
-    }, 4500);
+    }, 3000);
     return () => {
       window.clearTimeout(fallback);
       ctx.revert();

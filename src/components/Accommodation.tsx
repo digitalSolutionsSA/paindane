@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { Flip } from 'gsap/Flip';
 import { accommodationTitle, units, type Resort } from '../content';
 import { Bed, Home, Tent, Wave } from './Icons';
-import { BOOK_UNIT_EVENT } from '../booking/BookingWidget';
+import { requestBook } from '../booking/bookEvents';
 
 gsap.registerPlugin(Flip);
 
@@ -105,7 +105,7 @@ export default function Accommodation() {
             <a
               href="#book"
               className="unit-link"
-              onClick={() => window.dispatchEvent(new CustomEvent(BOOK_UNIT_EVENT, { detail: u.name }))}
+              onClick={() => requestBook(u.name)}
             >
               Book Now →
             </a>

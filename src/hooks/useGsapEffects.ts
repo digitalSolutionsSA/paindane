@@ -16,7 +16,7 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
  *  data-marquee      endless ticker
  *  data-pop          children pop in with a stagger once
  * plus: eyebrow lines draw in, gallery photos rise in batches and lean with scroll speed,
- * the site map builds itself (roads draw, buildings pop up), and a scroll progress bar.
+ * and a scroll progress bar. (The booking widget loads later and runs its own entrance.)
  */
 export function useGsapEffects() {
   useLayoutEffect(() => {
@@ -151,32 +151,6 @@ export function useGsapEffects() {
             onUpdate: (self) => skew(gsap.utils.clamp(-4, 4, self.getVelocity() / -350)),
             onLeave: () => skew(0),
             onLeaveBack: () => skew(0),
-          });
-        }
-
-        // Site map builds itself: roads draw, then the buildings pop up
-        const map = document.querySelector('.booking .site-map');
-        if (map) {
-          const tl = gsap.timeline({ scrollTrigger: { trigger: map, start: 'top 80%' } });
-          tl.fromTo(map.querySelectorAll('.sm-road'), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.4, ease: 'power2.inOut', stagger: 0.08 })
-            .from(map.querySelectorAll('.sm-scenery'), { autoAlpha: 0, duration: 0.6, stagger: 0.03 }, 0.4)
-            .from(
-              map.querySelectorAll('.sm-pop'),
-              { scale: 0, transformOrigin: '50% 100%', duration: 0.7, ease: 'back.out(2.2)', stagger: { each: 0.018, from: 'random' } },
-              0.6,
-            );
-        }
-
-        // The booking panel slides together
-        const booking = document.querySelector('.booking');
-        if (booking) {
-          gsap.from(booking.querySelectorAll('.bw-controls, .bw-grid > *'), {
-            y: 60,
-            autoAlpha: 0,
-            duration: 1.1,
-            ease: 'expo.out',
-            stagger: 0.12,
-            scrollTrigger: { trigger: booking.querySelector('.bw-controls'), start: 'top 88%' },
           });
         }
 

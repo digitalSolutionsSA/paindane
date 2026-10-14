@@ -5,11 +5,14 @@ import * as THREE from 'three';
  * Rendered on a transparent canvas so it can sit over the hero photos.
  */
 export function createOceanScene(container: HTMLElement, opts: { particles?: number; waveOpacity?: number } = {}) {
-  const { particles = 900, waveOpacity = 0.55 } = opts;
+  const { waveOpacity = 0.55 } = opts;
+  // Lighter scene on phones and small tablets: fewer particles, a coarser wave mesh and lower pixel density
+  const small = window.innerWidth < 900;
+  const particles = Math.round((opts.particles ?? 900) * (small ? 0.45 : 1));
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  const renderer = new THREE.WebGLRenderer({ antialias: !small, alpha: true, powerPreference: small ? 'low-power' : 'high-performance' });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, small ? 1.25 : 1.75));
   renderer.setClearColor(0x000000, 0);
   container.appendChild(renderer.domElement);
 
@@ -21,7 +24,7 @@ export function createOceanScene(container: HTMLElement, opts: { particles?: num
   camera.lookAt(0, 0, -6);
 
   // Ocean surface
-  const geo = new THREE.PlaneGeometry(90, 70, 160, 120);
+  const geo = small ? new THREE.PlaneGeometry(90, 70, 80, 60) : new THREE.PlaneGeometry(90, 70, 150, 110);
   geo.rotateX(-Math.PI / 2);
   const uniforms = {
     uTime: { value: 0 },

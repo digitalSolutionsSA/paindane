@@ -1,5 +1,5 @@
 import { contact, contactSection } from '../content';
-import BookingWidget from '../booking/BookingWidget';
+import LazyBooking from '../booking/LazyBooking';
 import { Mail, Phone, Pin } from './Icons';
 import Picture from './Picture';
 
@@ -16,7 +16,7 @@ export default function Contact() {
       </div>
 
       <div className="container">
-        <BookingWidget />
+        <LazyBooking />
       </div>
 
       <div className="container contact-wrap">

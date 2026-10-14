@@ -954,10 +954,6 @@
   pointer-events: none;
 }
 
-.sm-cloud ellipse {
-  fill: rgba(40, 50, 60, 0.11);
-}
-
 .sm-cloud {
   animation: sm-drift 70s linear infinite;
 }

@@ -1,5 +1,8 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
+import { BOOK_UNIT_EVENT, takePendingBook } from './bookEvents';
 import { contact } from '../content';
 import { requestBooking, stayPrice, type Unit } from './api';
 import { addDays, formatDate, formatRand, nightsBetween, resortToday } from './dates';
@@ -12,9 +15,6 @@ import { scrollToTarget } from '../lib/smoothScroll';
 import { CATEGORIES, RESORTS, type ResortId } from './units';
 
 type Step = 'choose' | 'details' | 'done';
-
-/** Other parts of the page call this to open the booking widget on a unit (by its listing name). */
-export const BOOK_UNIT_EVENT = 'paindane:book-unit';
 
 function Stepper({ label, value, min, onChange }: { label: string; value: number; min: number; onChange: (n: number) => void }) {
   return (
@@ -83,10 +83,10 @@ export default function BookingWidget() {
     setNotice(`${names.join(', ')} ${names.length === 1 ? 'is' : 'are'} already booked for those dates and ${names.length === 1 ? 'was' : 'were'} removed.`);
   }, [unavailable, selected, units]);
 
-  // "Book Now" on an accommodation card
+  // "Book Now" on an accommodation card (also one pressed while this widget was still downloading)
   useEffect(() => {
-    const onBook = (e: Event) => {
-      const listing = (e as CustomEvent<string>).detail;
+    if (!units) return;
+    const open = (listing: string) => {
       const match = (units ?? []).filter((u) => u.listing === listing && u.is_active);
       if (!match.length) return;
       setResort(match[0].resort);
@@ -96,9 +96,46 @@ export default function BookingWidget() {
       else setView('list');
       if (root.current) scrollToTarget(root.current);
     };
+    const pending = takePendingBook();
+    if (pending) open(pending);
+    const onBook = (e: Event) => open((e as CustomEvent<string>).detail);
     window.addEventListener(BOOK_UNIT_EVENT, onBook);
     return () => window.removeEventListener(BOOK_UNIT_EVENT, onBook);
   }, [units]);
+
+  // Entrance: this widget loads after the page-wide effects ran, so it brings its own
+  useLayoutEffect(() => {
+    if (!root.current || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger, SplitText);
+    const ctx = gsap.context(() => {
+      const heading = root.current!.querySelector('.bw-head h2');
+      if (heading) {
+        const split = SplitText.create(heading, { type: 'words', mask: 'words' });
+        gsap.from(split.words, { yPercent: 115, rotate: 6, duration: 1.1, ease: 'expo.out', stagger: 0.06, scrollTrigger: { trigger: heading, start: 'top 88%' } });
+      }
+      gsap.from('.bw-controls, .bw-choose > *', {
+        y: 60,
+        autoAlpha: 0,
+        duration: 1.1,
+        ease: 'expo.out',
+        stagger: 0.12,
+        scrollTrigger: { trigger: '.bw-controls', start: 'top 88%' },
+      });
+      // The site map builds itself: tracks draw, then the buildings pop up
+      const map = root.current!.querySelector('.site-map');
+      if (map) {
+        gsap
+          .timeline({ scrollTrigger: { trigger: map, start: 'top 80%' } })
+          .fromTo(map.querySelectorAll('.sm-road'), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.4, ease: 'power2.inOut', stagger: 0.04 })
+          .from(map.querySelectorAll('.sm-scenery'), { autoAlpha: 0, duration: 0.6, stagger: 0.004 }, 0.4)
+          .from(map.querySelectorAll('.sm-pop'), { scale: 0, transformOrigin: '50% 100%', duration: 0.7, ease: 'back.out(2.2)', stagger: { each: 0.018, from: 'random' } }, 0.6);
+      }
+    }, root);
+    ScrollTrigger.refresh();
+    return () => ctx.revert();
+    // Only on first appearance; the map element exists from the first render when units are cached
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [Boolean(units)]);
 
   // Step transitions
   useLayoutEffect(() => {
@@ -182,7 +219,7 @@ export default function BookingWidget() {
   const waHref = (text: string) => `${contact.whatsapp}?text=${encodeURIComponent(text)}`;
 
   return (
-    <div className="booking" ref={root} id="book">
+    <div className="booking" ref={root}>
       <div className="bw-head">
         <span className="eyebrow">Book Your Stay</span>
         <h2 data-split>Choose your spot</h2>

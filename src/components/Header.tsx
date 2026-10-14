@@ -55,7 +55,7 @@ export default function Header({ base = '' }: { base?: string }) {
       <div className="navbar">
         <div className="container navbar-inner">
           <a href={`${base}#top`} className="logo" aria-label={brand.name}>
-            <img src={logoUrl()} alt={brand.name} width={691} height={304} fetchPriority="high" />
+            <img src={logoUrl()} alt={brand.name} width={691} height={304} {...({ fetchpriority: 'high' } as Record<string, string>)} />
           </a>
           <nav className={`nav ${open ? 'is-open' : ''}`} aria-label="Main">
             {nav.map((n) => (

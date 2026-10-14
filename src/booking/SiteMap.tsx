@@ -110,13 +110,16 @@ export default function SiteMap({ units, stateOf, onToggle, onHover, svgRef }: S
         <filter id="sm-glow" x="-50%" y="-50%" width="200%" height="200%">
           <feDropShadow dx="0" dy="6" stdDeviation="6" floodColor="#304b66" floodOpacity=".45" />
         </filter>
-        <filter id="sm-grain" x="0" y="0" width="100%" height="100%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4" result="noise" />
-          <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.45  0 0 0 0 0.35  0 0 0 0 0.2  0 0 0 0.09 0" />
-        </filter>
-        <filter id="sm-cloud" x="-30%" y="-30%" width="160%" height="160%">
-          <feGaussianBlur stdDeviation="28" />
-        </filter>
+        {/* Cheap sand texture: a tiny repeating dot pattern instead of a full-size noise filter */}
+        <pattern id="sm-grain" width="9" height="9" patternUnits="userSpaceOnUse">
+          <circle cx="2" cy="3" r="0.8" fill="rgba(120,90,45,.16)" />
+          <circle cx="7" cy="7" r="0.6" fill="rgba(120,90,45,.12)" />
+        </pattern>
+        {/* Soft cloud shadow as a gradient (a blur filter would be redrawn every frame) */}
+        <radialGradient id="sm-cloud">
+          <stop offset="0" stopColor="rgba(40,50,60,.13)" />
+          <stop offset="1" stopColor="rgba(40,50,60,0)" />
+        </radialGradient>
         <pattern id="sm-hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
           <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(35,48,61,.35)" strokeWidth="2" />
         </pattern>
@@ -380,7 +383,7 @@ function Ground() {
         ENTRANCE
       </text>
 
-      <rect x={0} y={0} width={w} height={h} filter="url(#sm-grain)" opacity={0.6} />
+      <rect x={0} y={0} width={w} height={h} fill="url(#sm-grain)" />
     </g>
   );
 }
@@ -390,10 +393,10 @@ function Sky() {
   return (
     <g aria-hidden className="sm-sky">
       <g className="sm-cloud sm-cloud-1">
-        <ellipse cx={0} cy={180} rx={180} ry={70} filter="url(#sm-cloud)" />
+        <ellipse cx={0} cy={180} rx={220} ry={95} fill="url(#sm-cloud)" />
       </g>
       <g className="sm-cloud sm-cloud-2">
-        <ellipse cx={0} cy={470} rx={240} ry={90} filter="url(#sm-cloud)" />
+        <ellipse cx={0} cy={470} rx={290} ry={120} fill="url(#sm-cloud)" />
       </g>
       <rect x={0} y={0} width={MAP_SIZE.w} height={MAP_SIZE.h} fill="url(#sm-vignette)" />
     </g>

@@ -340,3 +340,125 @@ html.lenis body {
 .gallery-item img {
   height: auto;
 }
+
+/* ---------- Booking placeholder while the widget downloads ---------- */
+.booking-holder {
+  scroll-margin-top: 100px;
+}
+
+.booking-skeleton {
+  display: grid;
+  gap: 16px;
+}
+
+.sk {
+  border-radius: var(--radius);
+  background: linear-gradient(100deg, #efe9df 30%, #f8f4ee 50%, #efe9df 70%) 0 0 / 200% 100%;
+  animation: sk-shine 1.4s linear infinite;
+}
+
+.sk-title {
+  width: min(420px, 70%);
+  height: 56px;
+}
+
+.sk-bar {
+  height: 92px;
+}
+
+.sk-map {
+  aspect-ratio: 1700 / 650;
+  min-height: 360px;
+  width: 100%;
+}
+
+@keyframes sk-shine {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* Full-height hero that respects mobile browser toolbars */
+.hero {
+  height: 100svh;
+}
+
+/* ---------- Touch screens: comfortable tap targets (44px), without changing the desktop look ---------- */
+@media (pointer: coarse) {
+  .topbar a {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0 6px;
+  }
+
+  .hero-dots {
+    gap: 4px;
+  }
+
+  .hero-dots button {
+    position: relative;
+  }
+
+  /* Invisible 44px hit area around the small dots */
+  .hero-dots button::before {
+    content: '';
+    position: absolute;
+    inset: -17px;
+  }
+
+  .chip,
+  .pill,
+  .map-zones button {
+    min-height: 44px;
+  }
+
+  .unit-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  /* .booking prefix: booking.css loads later with the widget and would otherwise win */
+  .booking .bw-stepper button {
+    width: 44px;
+    height: 44px;
+  }
+
+  .booking .map-zoom button,
+  .map-stage .map-zoom button {
+    width: 44px;
+    height: 44px;
+  }
+
+  .quick-links a,
+  .footer-contact a,
+  .footer-bottom a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+  }
+}
+
+/* ---------- Readable small labels on phones ---------- */
+@media (max-width: 600px) {
+  .field > span,
+  .bw-date > span,
+  .bw-stepper > span,
+  .info-row small,
+  .unit-top,
+  .ul-badge,
+  .map-tip-cat {
+    font-size: 0.75rem;
+  }
+}
+
+/* ---------- Tablets: two-column footer instead of one long stack ---------- */
+@media (min-width: 600px) and (max-width: 960px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-logo {
+    grid-column: 1 / -1;
+  }
+}
