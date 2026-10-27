@@ -49,7 +49,7 @@ export default function GalleryPage({ onOpen }: { onOpen: (index: number) => voi
             <a href="/" className="btn btn-light">
               Back to Home
             </a>
-            <a href="/#contact" className="btn btn-sand">
+            <a href="/#enquire" className="btn btn-sand">
               Enquire Now
             </a>
           </div>

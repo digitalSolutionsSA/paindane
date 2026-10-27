@@ -37,7 +37,7 @@ export const nav: { id: string; label: string; href?: string }[] = [
   { id: 'pleasure-bay', label: 'Pleasure Bay' },
   { id: 'gallery', label: 'Gallery', href: '/gallery.html' },
   { id: 'accommodation', label: 'Accommodation' },
-  { id: 'contact', label: 'Enquire Now' },
+  { id: 'contact', label: 'Enquire Now', href: '/#enquire' },
 ];
 
 export const heroSlides = [
@@ -540,4 +540,25 @@ export const galleryPage = {
   sub: 'photos of the beaches, chalets and reefs at Tan ‘n Biki.',
   image: '/images/hero/hero-4.jpg',
   href: '/gallery.html',
+};
+
+/** Booking enquiry form (sent to management by the /api/enquiry function) */
+export const enquiryForm = {
+  eyebrow: 'Booking enquiry',
+  title: 'Tell us about your stay',
+  intro: 'Send us your dates and who’s coming – the Tan ‘n Biki team will check availability and get back to you to confirm.',
+  // Must match the list in netlify/functions/enquiry.mts
+  resorts: ['Paindane Beach Resort', 'Pleasure Bay Resort', 'Either / not sure'],
+  accommodation: [
+    'Paindane – Luxury villa',
+    'Paindane – Chalet',
+    'Paindane – Rondavel',
+    'Paindane – Campsite / Baracca / Casita',
+    'Pleasure Bay – Unit',
+    'Pleasure Bay – House',
+  ],
+  messagePlaceholder: 'Special requests, which units you’re interested in, travelling with a 4×4 or trailer…',
+  note: 'This is an enquiry, not a booking. Please don’t pay anything until management has confirmed with you.',
+  sentTitle: 'Thank you – your enquiry is on its way!',
+  sentText: 'The Tan ‘n Biki management team will check availability and contact you to confirm your booking. Please don’t make any payment until you’ve heard from us.',
 };

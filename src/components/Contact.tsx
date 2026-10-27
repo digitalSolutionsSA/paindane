@@ -1,4 +1,5 @@
 import { contact, contactSection } from '../content';
+import EnquiryForm from './EnquiryForm';
 import EnquiryNotice from './EnquiryNotice';
 import { Mail, Phone, Pin } from './Icons';
 import SunPortal from './SunPortal';
@@ -10,6 +11,7 @@ export default function Contact() {
 
       <div className="container">
         <EnquiryNotice className="enquiry--contact sr-up" />
+        <EnquiryForm />
       </div>
 
       <div className="container contact-wrap">

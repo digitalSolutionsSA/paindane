@@ -107,7 +107,7 @@ export default function Accommodation() {
               </p>
             ))}
             <a
-              href="#contact"
+              href="#enquire"
               className="unit-link"
             >
               Enquire to book →

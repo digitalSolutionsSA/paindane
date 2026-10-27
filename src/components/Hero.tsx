@@ -161,7 +161,7 @@ export default function Hero() {
             <p className="dive-sub">{heroHeading.sub}</p>
             <div className="dive-actions">
               <a href="#welcome" className="btn btn-light">Explore</a>
-              <a href="#contact" className="btn btn-sand">Enquire Now</a>
+              <a href="#enquire" className="btn btn-sand">Enquire Now</a>
             </div>
           </div>
           <WaveDivider color="rgba(28, 147, 196, 0.95)" tide={false} />
@@ -177,7 +177,7 @@ export default function Hero() {
           ))}
           <div className="dive-cta">
             <a href="#welcome" className="btn btn-light">Explore the resorts</a>
-            <a href="#contact" className="btn btn-sand">Enquire now</a>
+            <a href="#enquire" className="btn btn-sand">Enquire now</a>
           </div>
         </div>
 
