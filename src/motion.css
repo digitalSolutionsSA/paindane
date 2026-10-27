@@ -28,8 +28,7 @@ html.lenis body {
 
 /* Giant outlined words drifting behind sections */
 .section--welcome,
-#paindane,
-#pleasure-bay {
+#explore {
   overflow: clip;
 }
 
@@ -44,14 +43,14 @@ html.lenis body {
   line-height: 1;
   white-space: nowrap;
   color: transparent;
-  -webkit-text-stroke: 1.5px rgba(48, 75, 102, 0.1);
+  -webkit-text-stroke: 1.5px rgba(11, 106, 162, 0.1);
   pointer-events: none;
   user-select: none;
   will-change: transform;
 }
 
 .section--sand .bg-word {
-  -webkit-text-stroke-color: rgba(146, 131, 108, 0.22);
+  -webkit-text-stroke-color: rgba(255, 138, 31, 0.22);
 }
 
 .section > .container,
@@ -137,7 +136,7 @@ html.lenis body {
   border: 0;
   overflow: hidden;
   border-radius: 24px;
-  background: #2a3f55;
+  background: #0b4f78;
   box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.7);
 }
 
@@ -263,7 +262,7 @@ html.lenis body {
   height: 96px;
   mix-blend-mode: normal;
   border-color: transparent;
-  background: rgba(146, 131, 108, 0.92);
+  background: rgba(255, 138, 31, 0.92);
   backdrop-filter: blur(4px);
 }
 
@@ -315,7 +314,6 @@ html.lenis body {
 }
 
 /* ---------- Responsive photos (<picture>) filling their frames ---------- */
-.hero-img picture,
 .cta-bg picture,
 .legal-hero-bg picture {
   position: absolute;
@@ -323,7 +321,6 @@ html.lenis body {
   display: block;
 }
 
-.hero-img img,
 .cta-bg img,
 .legal-hero-bg img {
   width: 100%;
@@ -353,7 +350,7 @@ html.lenis body {
 
 .sk {
   border-radius: var(--radius);
-  background: linear-gradient(100deg, #efe9df 30%, #f8f4ee 50%, #efe9df 70%) 0 0 / 200% 100%;
+  background: linear-gradient(100deg, #fdeccb 30%, #fff7e6 50%, #fdeccb 70%) 0 0 / 200% 100%;
   animation: sk-shine 1.4s linear infinite;
 }
 
@@ -378,32 +375,12 @@ html.lenis body {
   }
 }
 
-/* Full-height hero that respects mobile browser toolbars */
-.hero {
-  height: 100svh;
-}
-
 /* ---------- Touch screens: comfortable tap targets (44px), without changing the desktop look ---------- */
 @media (pointer: coarse) {
   .topbar a {
     min-width: 40px;
     min-height: 40px;
     padding: 0 6px;
-  }
-
-  .hero-dots {
-    gap: 4px;
-  }
-
-  .hero-dots button {
-    position: relative;
-  }
-
-  /* Invisible 44px hit area around the small dots */
-  .hero-dots button::before {
-    content: '';
-    position: absolute;
-    inset: -17px;
   }
 
   .chip,
@@ -461,4 +438,185 @@ html.lenis body {
   .footer-logo {
     grid-column: 1 / -1;
   }
+}
+
+/* ---------- Wave dividers (the logo's waves between sections) ---------- */
+.cta-band {
+  isolation: isolate;
+}
+
+.wave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  z-index: 3;
+  display: block;
+  width: 100%;
+  height: clamp(46px, 7vw, 110px);
+  transform-origin: bottom;
+  pointer-events: none;
+}
+
+.wave-layers > use {
+  animation: wave-roll 22s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+
+.wave-layers > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+
+.wave-layers > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+
+.wave-layers > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+
+.wave-layers > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+
+@keyframes wave-roll {
+  0% {
+    transform: translate3d(-90px, 0, 0);
+  }
+  100% {
+    transform: translate3d(85px, 0, 0);
+  }
+}
+
+/* Room for the wave under the last thing in a section */
+.section:has(> .wave) {
+  padding-bottom: calc(clamp(80px, 11vw, 150px) + clamp(30px, 4vw, 60px));
+}
+
+.cta-band .cta-title {
+  z-index: 2;
+}
+
+/* ---------- Sun decorations ---------- */
+.sun {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.sun svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 40px rgba(255, 194, 26, 0.55));
+}
+
+.sun--welcome {
+  top: clamp(40px, 8vw, 110px);
+  right: clamp(-60px, -2vw, 0px);
+  width: clamp(120px, 16vw, 230px);
+  opacity: 0.9;
+}
+
+.sun--accommodation {
+  top: clamp(20px, 4vw, 60px);
+  left: clamp(-50px, -2vw, 0px);
+  width: clamp(90px, 11vw, 160px);
+  opacity: 0.75;
+}
+
+#accommodation {
+  overflow: clip;
+}
+
+#accommodation > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Sunset curtain over feature photos ---------- */
+.feature-curtain {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(120deg, var(--sun), var(--orange) 55%, #ef6a0e);
+  transform: scaleX(0);
+  pointer-events: none;
+}
+
+/* Letters animate one by one; keep each word on one line */
+[data-split] .word {
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wave-layers > use {
+    animation: none;
+  }
+}
+
+/* The curtain reveal scales the <picture>, which makes it the photo's frame, so it must fill the box */
+.feature-media picture {
+  position: absolute;
+  inset: 0;
+}
+
+/* Phones: the suns tuck into the corners so they never sit over a heading */
+@media (max-width: 600px) {
+  .sun--welcome {
+    top: 8px;
+    right: -34px;
+    width: 96px;
+    opacity: 0.7;
+  }
+
+  .sun--accommodation {
+    top: 4px;
+    left: -30px;
+    width: 76px;
+    opacity: 0.6;
+  }
+}
+
+/* ---------- Buttons: colour floods in from where the pointer enters (useButtonFlood) ---------- */
+.has-flood .btn::before {
+  display: none;
+}
+
+.has-flood .btn::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: var(--fx, 50%);
+  top: var(--fy, 50%);
+  width: 260%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--flood, var(--navy-deep));
+  translate: -50% -50%;
+  scale: 0;
+  transition: scale 0.45s cubic-bezier(0.55, 0, 0.7, 0.2);
+  pointer-events: none;
+}
+
+.has-flood .btn.is-flood::after {
+  scale: 1;
+  transition: scale 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-light {
+  --flood: var(--white);
+  transition: color 0.4s;
+}
+
+.has-flood .btn-light.is-flood {
+  color: var(--navy-deep);
+  text-shadow: none;
+}
+
+.btn-sand {
+  --flood: var(--navy-deep);
 }

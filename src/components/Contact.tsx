@@ -1,22 +1,15 @@
 import { contact, contactSection } from '../content';
-import LazyBooking from '../booking/LazyBooking';
+import EnquiryNotice from './EnquiryNotice';
 import { Mail, Phone, Pin } from './Icons';
-import Picture from './Picture';
+import SunPortal from './SunPortal';
 
 export default function Contact() {
   return (
     <>
-      <div className="cta-band">
-        <div className="cta-bg" data-parallax>
-          <Picture src="/images/hero/hero-2.jpg" alt="" sizes="100vw" />
-        </div>
-        <h2 className="cta-title" data-split>
-          {contactSection.cta}
-        </h2>
-      </div>
+      <SunPortal />
 
       <div className="container">
-        <LazyBooking />
+        <EnquiryNotice className="enquiry--contact sr-up" />
       </div>
 
       <div className="container contact-wrap">
@@ -44,7 +37,7 @@ export default function Contact() {
             </span>
           </a>
         </div>
-        <div className="map sr-right">
+        <div className="map" data-clip>
           <iframe
             title="Map of Paindane"
             loading="lazy"

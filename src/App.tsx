@@ -1,16 +1,20 @@
 import { useCallback, useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import FeatureBlock from './components/FeatureBlock';
-import Gallery from './components/Gallery';
+import Explore from './components/Explore';
+import Glance from './components/Glance';
+import HowBooking from './components/HowBooking';
+import VelocityBand from './components/VelocityBand';
 import GalleryStrip from './components/GalleryStrip';
 import Accommodation from './components/Accommodation';
 import Contact from './components/Contact';
 import Cursor from './components/Cursor';
+import { Sun, WaveDivider } from './components/Decor';
 import Footer from './components/Footer';
 import Lightbox from './components/Lightbox';
 import Preloader from './components/Preloader';
-import { gallery, paindaneFeatures, pleasureBayFeatures, welcome, welcomeFeatures } from './content';
+import { gallery, galleryPage, welcome } from './content';
+import { useButtonFlood } from './hooks/useButtonFlood';
 import { useGsapEffects } from './hooks/useGsapEffects';
 import { useScrollReveal } from './hooks/useScrollReveal';
 import { useSmoothScroll } from './lib/smoothScroll';
@@ -20,6 +24,7 @@ export default function App() {
 
   useSmoothScroll();
   useGsapEffects();
+  useButtonFlood();
   useScrollReveal();
 
   const openSingle = useCallback((src: string) => {
@@ -41,9 +46,10 @@ export default function App() {
           <div className="bg-word" data-drift="1" aria-hidden="true">
             Mozambique
           </div>
+          <Sun className="sun--welcome" />
           <div className="container narrow intro">
             <span className="eyebrow">Welcome</span>
-            <h1 data-split>{welcome.title}</h1>
+            <h2 className="intro-title" data-split>{welcome.title}</h2>
             {welcome.paragraphs.map((p) => (
               <p key={p} className="lead" data-scrub-text>
                 {p}
@@ -53,50 +59,37 @@ export default function App() {
               <strong>{welcome.highlight}</strong>
             </p>
           </div>
-          <div className="features">
-            {welcomeFeatures.map((f, i) => (
-              <FeatureBlock key={i} feature={f} onOpenImage={openSingle} />
-            ))}
-          </div>
+          <Glance />
+          <WaveDivider color="var(--sand-light)" />
         </section>
 
-        <section id="paindane" className="section section--sand">
+        <section id="explore" className="section section--sand section--explore">
           <div className="bg-word" data-drift="-1" aria-hidden="true">
             Paindane
           </div>
-          <div className="section-head container">
-            <span className="eyebrow">Paindane Beach Resort</span>
-          </div>
-          <div className="features">
-            {paindaneFeatures.map((f, i) => (
-              <FeatureBlock key={i} feature={f} onOpenImage={openSingle} />
-            ))}
-          </div>
-        </section>
-
-        <section id="pleasure-bay" className="section">
-          <div className="bg-word" data-drift="1" aria-hidden="true">
-            Pleasure Bay
-          </div>
-          <div className="section-head container">
-            <span className="eyebrow">Pleasure Bay Resort</span>
-          </div>
-          <div className="features">
-            {pleasureBayFeatures.map((f, i) => (
-              <FeatureBlock key={i} feature={f} onOpenImage={openSingle} />
-            ))}
-          </div>
+          <Explore onOpenImage={openSingle} />
+          <WaveDivider color="var(--navy-deep)" />
         </section>
 
         <section id="gallery" className="section section--dark section--gallery">
+          <VelocityBand />
           <GalleryStrip onOpen={openGallery} />
-          <div className="container">
-            <Gallery onOpen={openGallery} />
+          <div className="container gallery-more sr-up">
+            <a href={galleryPage.href} className="btn btn-sand">
+              View the full gallery ({gallery.length} photos)
+            </a>
           </div>
+          <WaveDivider color="var(--aqua-light)" />
         </section>
 
         <section id="accommodation" className="section section--grey">
+          <Sun className="sun--accommodation" />
           <Accommodation />
+          <WaveDivider color="var(--navy-deep)" />
+        </section>
+
+        <section id="how" className="section section--dark section--how">
+          <HowBooking />
         </section>
 
         <section id="contact" className="section section--contact">

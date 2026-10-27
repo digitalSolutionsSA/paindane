@@ -3,7 +3,6 @@ import gsap from 'gsap';
 import { Flip } from 'gsap/Flip';
 import { accommodationTitle, units, type Resort } from '../content';
 import { Bed, Home, Tent, Wave } from './Icons';
-import { requestBook } from '../booking/bookEvents';
 
 gsap.registerPlugin(Flip);
 
@@ -31,7 +30,12 @@ export default function Accommodation() {
   const visible = units.filter((u) => (filter === 'All' || u.resort === filter) && (category === 'All' || u.category === category));
 
   const capture = () => {
-    if (gridRef.current) flipState.current = Flip.getState(gridRef.current.querySelectorAll('.unit'));
+    if (!gridRef.current) return;
+    const cards = gridRef.current.querySelectorAll('.unit');
+    // Cards still waiting for their scroll-in reveal must be visible before the layout animation
+    gsap.killTweensOf(cards);
+    gsap.set(cards, { autoAlpha: 1, y: 0, rotateX: 0 });
+    flipState.current = Flip.getState(cards);
   };
 
   // Animate cards from their previous layout to the new one
@@ -103,11 +107,10 @@ export default function Accommodation() {
               </p>
             ))}
             <a
-              href="#book"
+              href="#contact"
               className="unit-link"
-              onClick={() => requestBook(u.name)}
             >
-              Book Now →
+              Enquire to book →
             </a>
           </li>
         ))}

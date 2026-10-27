@@ -52,7 +52,7 @@ export const privacy: LegalSection[] = [
   {
     "heading": "Contacting us",
     "paragraphs": [
-      "If there are any questions regarding this Privacy Policy you may contact us using the following information: tanbiki@paindane.com"
+      "If there are any questions regarding this Privacy Policy you may contact us using the following information: tannbiki@paindane.com"
     ]
   }
 ];

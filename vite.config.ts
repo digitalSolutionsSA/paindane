@@ -17,6 +17,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         privacy: resolve(__dirname, 'privacy.html'),
         disclaimer: resolve(__dirname, 'disclaimer.html'),
+        gallery: resolve(__dirname, 'gallery.html'),
         portal: resolve(__dirname, 'dssa-portals/index.html'),
       },
       output: {

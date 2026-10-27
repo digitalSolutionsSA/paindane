@@ -1,10 +1,11 @@
 // All site copy and image paths live here so the site can be edited in one place.
 
 export const contact = {
-  email: 'tanbiki@paindane.com',
-  phone: '+27 82 825 5597',
-  phoneHref: 'tel:+27828255597',
-  whatsapp: 'https://wa.me/27825693436',
+  email: 'tannbiki@paindane.com',
+  // 071 360 8554 – one number for calls and WhatsApp
+  phone: '+27 71 360 8554',
+  phoneHref: 'tel:+27713608554',
+  whatsapp: 'https://wa.me/27713608554',
   facebook: 'https://www.facebook.com/p/Tan-n-Biki-at-Paindane-61576954640114/',
   instagram: 'https://www.instagram.com/tan_n_biki',
   address: 'VFXX+F6H, Guinjala, Mozambique',
@@ -19,13 +20,24 @@ export const brand = {
   tagline: 'Paindane Resort & Pleasure Bay Resort',
 };
 
-export const nav = [
+// Hero headline over the resort photos
+export const heroHeading = {
+  eyebrow: 'Paindane & Pleasure Bay · Mozambique',
+  lines: ['Sun, sea &', 'barefoot bliss'],
+  sub: 'Beachfront chalets, campsites and coral reefs on Mozambique’s Inhambane coast.',
+};
+
+// Lines revealed by passing light as the hero dives under the sea
+export const diveLines = ['Dive into Mozambique', 'Turquoise water, coral reefs & sea safaris', 'Your holiday starts at Paindane & Pleasure Bay'];
+
+/** Menu links: sections of the home page by id, or a page of their own via href */
+export const nav: { id: string; label: string; href?: string }[] = [
   { id: 'welcome', label: 'Welcome' },
   { id: 'paindane', label: 'Paindane' },
   { id: 'pleasure-bay', label: 'Pleasure Bay' },
-  { id: 'gallery', label: 'Gallery' },
+  { id: 'gallery', label: 'Gallery', href: '/gallery.html' },
   { id: 'accommodation', label: 'Accommodation' },
-  { id: 'contact', label: 'Book Now' },
+  { id: 'contact', label: 'Enquire Now' },
 ];
 
 export const heroSlides = [
@@ -48,6 +60,8 @@ export const welcome = {
 export type Link = { label: string; href: string };
 
 export type Feature = {
+  /** Short name for the topic chips in the Explore section */
+  label: string;
   title?: string;
   body: string[];
   list?: string[];
@@ -63,6 +77,7 @@ export type Feature = {
 
 export const welcomeFeatures: Feature[] = [
   {
+    label: 'About Mozambique',
     title: 'About Mozambique',
     body: [
       'Mozambique, with its stunning coastline along the Indian Ocean, offers a paradise for tourists seeking both relaxation and adventure. The ocean resorts in Mozambique are renowned for their pristine beaches, crystal-clear waters, and vibrant marine life. Whether you’re looking to unwind on the sandy shores or explore the underwater wonders, Mozambique’s ocean resorts have something for everyone.',
@@ -72,6 +87,7 @@ export const welcomeFeatures: Feature[] = [
     tone: 'navy',
   },
   {
+    label: 'Activities',
     title: 'Activities in the area',
     body: ['Here are some of the main activities that tourists can enjoy at these resorts:'],
     list: [
@@ -87,6 +103,8 @@ export const welcomeFeatures: Feature[] = [
     tone: 'light',
   },
   {
+    label: 'Getting here',
+    title: 'Getting here safely',
     body: [
       'For your added peace of mind, we are members of DriveMoz and have created our own Zello channel so that all guests can communicate and recieve guidance on their journey to our resorts.',
       'It’s important to keep in contact with other cars while driving to Mozambique to ensure safety, coordinate travel plans, and stay informed about road conditions and potential hazards.',
@@ -112,6 +130,7 @@ export const welcomeFeatures: Feature[] = [
 
 export const paindaneFeatures: Feature[] = [
   {
+    label: 'The resort',
     title: 'Tan ‘n Biki @ Paindane Beach Resort',
     body: [
       'Tan ‘n Biki @ Paindane Beach Resort (Praia de Paindane) is situated 28 km South of Inhambane and is nestled amongst plantations of Coconut palms and miles of sun-bleached beaches. The last 4km is a thick sand track, 4×4 or Diff Lock recommended.',
@@ -121,6 +140,7 @@ export const paindaneFeatures: Feature[] = [
     tone: 'navy',
   },
   {
+    label: 'Chalets & camping',
     title: 'Luxury self-catering chalets',
     body: [
       'Luxury self-catering chalets with air conditioning and own pool, as well as basic rustic chalets and campsites, are on the dunes and just a stone’s throw from the beach. On selected campsites, baraccas are available for hire. The baraccas are cool traditional shelters with modern clean ablutions, electrical plug points, and water.',
@@ -135,6 +155,7 @@ export const paindaneFeatures: Feature[] = [
 
 export const pleasureBayFeatures: Feature[] = [
   {
+    label: 'The resort',
     title: 'Tan ‘n Biki @ Pleasure Bay Resort',
     body: [
       'Pleasure Bay Resort offers various self catering accommodation options which are situated on the dunes overlooking Paindane Beach and Lighthouse Reef about 30 kilometers south of Inhambane, Mozambique. It is the ideal destination for your Scuba Diving, Fishing, Adventure or Beach Holiday!',
@@ -144,6 +165,7 @@ export const pleasureBayFeatures: Feature[] = [
     tone: 'navy',
   },
   {
+    label: 'Rustic houses',
     title: 'Rustic self-catering houses',
     body: [
       'Nestled on the edge of the beach, rustic self-catering houses offer an idyllic retreat for those seeking tranquillity and charm. The gentle sound of waves lapping against the shore serves as a soothing backdrop, while large windows frame breathtaking views of the sea and sky. These rural self-catering houses provide a unique blend of rustic elegance and seaside serenity.',
@@ -291,7 +313,13 @@ export const units: Unit[] = [
 ];
 
 export const contactSection = {
-  cta: 'Reserve your Room Now',
+  cta: 'Enquire to Book Your Stay',
+  portal: {
+    tease: 'Ready when you are',
+    kicker: 'Enquire to book your stay',
+    title: ['Your sun', 'is waiting.'],
+    text: 'Tell us your dates and who’s coming – the Tan ‘n Biki team will check availability and confirm everything with you personally.',
+  },
   title: 'Contact Us',
 };
 
@@ -299,4 +327,217 @@ export const footer = {
   copyright: `Copyrights © ${new Date().getFullYear()} Tan ‘n Biki`,
   privacy: '/privacy.html',
   disclaimer: '/disclaimer.html',
+};
+
+// ---------- 2026 price lists (from the printed Paindane and Pleasure Bay price lists) ----------
+
+/** Price per day. A single `price` applies all year; null means "price on enquiry". */
+export type Rate = {
+  name: string;
+  /** Unit / site numbers */
+  units?: string;
+  description?: string[];
+  season?: string | null;
+  peak?: string | null;
+  /** One price for the whole year (camping sites) */
+  price?: string;
+};
+
+export type RateGroup = {
+  title: string;
+  subtitle?: string;
+  rates: Rate[];
+  notes?: string[];
+};
+
+const rondavelFitted = 'Rondavels fitted with gas Geysers, 2 Plate Cooker (gas supplied), Electric Fridge/Freezer & Linen.';
+const chaletFitted = 'Chalets fitted with gas Geysers, 3 Plate Cooker (gas supplied), Electric Fridge/Freezer & Linen.';
+const notSuppliedNote = 'NOT SUPPLIED – Towels, black rubbish bags & toilet paper.';
+const villaDesc = 'Kitchen, Open plan Lounge & Dining room, Verandah, Braai, Aircon, Wifi & Swimming Pool';
+
+export const rates: Record<Resort, RateGroup[]> = {
+  Paindane: [
+    {
+      title: 'Luxury Houses',
+      subtitle: 'Self Catering',
+      rates: [
+        { name: 'Luxury Villa 7 Sleeper', units: 'No 8, 10 & 25', description: [`3 x Bedrooms, 2 x Bathrooms, ${villaDesc}`], season: 'R5250', peak: 'R7500' },
+        { name: 'Luxury Villa 12 Sleeper', units: 'No 11', description: [`5 x Bedrooms, 2 x Bathrooms, ${villaDesc}`], season: 'R5950', peak: 'R8500' },
+      ],
+    },
+    {
+      title: 'Rondavels',
+      subtitle: 'Constructed from bricks – Relaxed, not Posh',
+      rates: [
+        {
+          name: '2 Sleeper Rondavel',
+          units: 'No 3, 4 & 5',
+          description: ['1 x Bedroom, Lounge, Kitchen & Bathroom', '2 x Single beds in room & bunk bed in lounge & Fans'],
+          season: 'R1680',
+          peak: 'R2400',
+        },
+        {
+          name: '4 Sleeper Rondavel',
+          units: 'No 1 & 2',
+          description: ['2 x Bedrooms, Lounge, Kitchen & Bathroom', '2 x 2 Single beds in rooms & bunk bed in lounge & Fans'],
+          season: 'R2100',
+          peak: 'R3000',
+        },
+      ],
+      notes: [rondavelFitted, notSuppliedNote],
+    },
+    {
+      title: 'Chalets',
+      subtitle: 'Constructed from bricks, reed & grass – Rustic Mozambique style',
+      rates: [
+        {
+          name: '6 Sleeper Chalet',
+          units: 'No 21, 22, 23 & 24',
+          description: ['3 x Bedrooms, 2 x Bathrooms, Kitchen, Open plan Lounge & Dining room, Verandah & Braai'],
+          season: 'R3500',
+          peak: 'R5000',
+        },
+        {
+          name: '7 Sleeper Chalet',
+          units: 'No 6, 7 & 9',
+          description: ['2 x Bedrooms, 1 x Bathroom, Kitchen, Open plan Lounge, Veranda & Braai'],
+          season: 'R6000',
+          peak: 'R8000',
+        },
+        {
+          name: '10 Sleeper Chalet',
+          units: 'No 13 & 15',
+          description: ['4 x Bedrooms, 2 Bathrooms, Kitchen, Open plan Lounge & Dining room, Verandah/Gazebo & Braai'],
+          season: 'R4200',
+          peak: 'R6000',
+        },
+        {
+          name: '12 Sleeper Chalet',
+          units: 'No 12',
+          description: ['5 x Bedrooms, 2 Bathrooms, Kitchen, Open plan Lounge & Dining room, Verandah & Braai'],
+          season: 'R4550',
+          peak: 'R6500',
+        },
+        {
+          name: '10 Sleeper Chalet',
+          units: 'No 26',
+          description: ['4 x Bedrooms, 2 Bathrooms, Kitchen, Open plan Lounge & Dining room, Verandah & Braai', '1 x Double bed & 8 x Single beds'],
+          season: 'R2450',
+          peak: 'R3500',
+        },
+        { name: '6 Sleeper Chalet', units: 'No 17', season: 'R2450', peak: 'R3500' },
+      ],
+      notes: [chaletFitted, notSuppliedNote],
+    },
+    {
+      title: 'Camping',
+      subtitle: 'Open Sites, Baracca, Casita',
+      rates: [
+        { name: 'Camping fees per adult', description: ['Per adult per day (plus camping option)'], season: 'R150 p/p/d', peak: 'R200 p/p/d' },
+        { name: 'Camping fees per child', description: ['Per child per day – under 11 years pay ½ price'], season: 'R75 p/p/d', peak: 'R100 p/p/d' },
+        {
+          name: 'Open Site with Gazebo',
+          description: ['2m x 2m on site. Site size 12m x 24m with plug point – for household electric freezer only – 5AMP PLUGS ONLY'],
+          price: 'R300 / day',
+        },
+        {
+          name: 'Baracca',
+          units: 'Sites 19, 20, 21, 22, 23, 24, 25, 26, 28, 31, 32 & 33',
+          description: [
+            '8m x 4m with prep bowl, plug point, work surface and a light – 5AMP PLUG ONLY',
+            'Baracca 31 can’t take a Safari Trailer because of a retainer wall around the site',
+          ],
+          price: 'R450 / day',
+        },
+        {
+          name: 'Casita',
+          units: 'Sites 3, 4, 5, 6, 7, 8, 9 & 10',
+          description: ['8m x 6m. Own ablution – Toilet, Shower, Hand basin, Geyser & Kitchenette', 'Electric plug point for own freezer – 5AMP PLUG ONLY'],
+          price: 'R500 / day',
+        },
+      ],
+    },
+  ],
+  'Pleasure Bay': [
+    {
+      title: 'Units',
+      subtitle: 'Self Catering',
+      rates: [
+        { name: 'Nemo', description: ['Double room (interleading to Dory double room)', '2 Sleeper'], season: 'R2000', peak: 'R2500' },
+        { name: 'Dory', description: ['Double room (interleading to Nemo double room)', '2 Sleeper'], season: 'R2000', peak: 'R2500' },
+        { name: 'Goby', description: ['Double room', '2 Sleeper'], season: 'R2000', peak: 'R2500' },
+        { name: 'Chocdip', description: ['Double room', '2 Sleeper'], season: 'R2000', peak: 'R2500' },
+        { name: 'Domino', description: ['Double room', '2 Sleeper'], season: 'R2000', peak: 'R2500' },
+        { name: 'Goldie', description: ['Double room & bunk bed', '4 Sleeper', 'Large balcony – Honeymoon unit'], season: 'R2450', peak: 'R2950' },
+        { name: 'Starfish', description: ['Double room & bunk bed', '4 Sleeper (interleading to Angel Fish double room)'], season: 'R2450', peak: 'R2950' },
+        { name: 'Angel Fish', description: ['Double room & bunk bed', '4 Sleeper (interleading to Starfish with bunk bed)'], season: 'R2450', peak: 'R2950' },
+        { name: 'Frog Fish', description: ['Double room & single bed', '3 Sleeper'], season: 'R2350', peak: 'R2850' },
+        { name: 'Tiger Fish', description: ['Double room & single bed', '3 Sleeper'], season: 'R2350', peak: 'R2850' },
+      ],
+    },
+    {
+      title: 'Houses',
+      rates: [
+        { name: 'Marlin', description: ['2 x Double rooms, 2 x Single rooms (2 beds per room)', '8 Sleeper'], season: null, peak: null },
+        { name: 'Manatee', description: ['1 x Double room, 3 x Single rooms (2 beds per room)', '8 Sleeper'], season: null, peak: null },
+        { name: 'Periwinkel', description: ['1 x Double room, 2 x Single rooms (2 beds per room)', '4 Sleeper'], season: null, peak: null },
+        { name: 'Orca', description: ['1 x Double room, 3 x Single rooms (2 beds per room)', '8 Sleeper'], season: null, peak: null },
+        { name: 'Dugongo', description: ['1 x Double room, 3 x Single rooms (2 beds per room)', '8 Sleeper'], season: null, peak: null },
+      ],
+    },
+  ],
+};
+
+export const ratesSection = {
+  eyebrow: 'Rates 2026',
+  title: 'Our 2026 Price List',
+  intro: 'All prices are per day, in South African Rand. Ask us whether your dates fall in season or peak season.',
+};
+
+/** Shown wherever guests might think about booking: nothing is paid until management has confirmed. */
+export const enquiryNotice = {
+  title: 'Please enquire before you book',
+  body: 'All bookings are arranged directly with the Paindane / Tan ‘n Biki management team. Please contact us first to check availability – don’t make any payment until you have spoken to us and received a confirmation from management.',
+};
+
+/** The Explore section: one tab per place, each with its topics */
+export const exploreSection = {
+  eyebrow: 'Explore',
+  title: 'Discover Mozambique, Paindane & Pleasure Bay',
+};
+
+export const exploreGroups = [
+  { id: 'mozambique', label: 'Mozambique', features: welcomeFeatures },
+  { id: 'paindane', label: 'Paindane Beach', features: paindaneFeatures },
+  { id: 'pleasure-bay', label: 'Pleasure Bay', features: pleasureBayFeatures },
+] as const;
+
+/** "At a glance" numbers under the welcome text (all from the resort info and the 2026 price lists) */
+export const glanceStats = [
+  { value: 2, suffix: '', label: 'Beach resorts' },
+  { value: 28, suffix: ' km', label: 'South of Inhambane' },
+  { value: 35, suffix: '+', label: 'Chalets, houses & units' },
+  { value: 12, suffix: '', label: 'Baracca campsites' },
+];
+
+/** "How booking works" – reinforces that nothing is paid before management confirms */
+export const howBooking = {
+  eyebrow: 'How booking works',
+  title: ['Enquire first.', 'Then relax.'],
+  intro: 'Every booking is arranged personally with the Tan ‘n Biki management team – here’s how it works.',
+  steps: [
+    { n: '01', title: 'Choose your spot', text: 'Browse the resorts and our accommodation to find the chalet, house or campsite that suits your crew.', tags: ['Explore', 'Accommodation'] },
+    { n: '02', title: 'Enquire with us', text: 'WhatsApp, email or call the Tan ‘n Biki team with your dates and the number of guests.', tags: ['WhatsApp', 'Email', 'Call'] },
+    { n: '03', title: 'We confirm', text: 'Management checks availability and confirms your booking and payment details with you personally. Please don’t pay anything before this.', tags: ['Availability', 'Confirmation'] },
+    { n: '04', title: 'Pack your bikini', text: 'Load the 4×4, join our Zello channel for the drive up, and we’ll see you on the beach.', tags: ['4×4', 'Zello', 'Beach'] },
+  ],
+};
+
+/** The stand-alone gallery page */
+export const galleryPage = {
+  eyebrow: 'Paindane & Pleasure Bay',
+  title: 'Gallery',
+  sub: 'photos of the beaches, chalets and reefs at Tan ‘n Biki.',
+  image: '/images/hero/hero-4.jpg',
+  href: '/gallery.html',
 };

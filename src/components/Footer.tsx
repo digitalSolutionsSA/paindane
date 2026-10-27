@@ -19,13 +19,13 @@ export default function Footer({ base = '' }: { base?: string }) {
       </div>
       <div className="container footer-grid">
         <div className="footer-logo sr-up">
-          <img src={logoUrl()} alt={brand.name} width={691} height={304} loading="lazy" decoding="async" />
+          <img src={logoUrl()} alt={brand.name} width={1935} height={654} loading="lazy" decoding="async" />
         </div>
         <div className="sr-up">
           <ul className="quick-links">
             {nav.map((n) => (
               <li key={n.id}>
-                <a href={`${base}#${n.id}`}>{n.label}</a>
+                <a href={n.href ?? `${base}#${n.id}`}>{n.label}</a>
               </li>
             ))}
           </ul>

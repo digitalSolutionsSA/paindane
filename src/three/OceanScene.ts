@@ -17,7 +17,7 @@ export function createOceanScene(container: HTMLElement, opts: { particles?: num
   container.appendChild(renderer.domElement);
 
   const scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(0x304b66, 18, 60);
+  scene.fog = new THREE.Fog(0x0b6aa2, 18, 60);
 
   const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 200);
   camera.position.set(0, 4.2, 14);
@@ -28,9 +28,9 @@ export function createOceanScene(container: HTMLElement, opts: { particles?: num
   geo.rotateX(-Math.PI / 2);
   const uniforms = {
     uTime: { value: 0 },
-    uDeep: { value: new THREE.Color('#0f2a40') },
-    uShallow: { value: new THREE.Color('#2fb4c6') },
-    uFoam: { value: new THREE.Color('#f4ead8') },
+    uDeep: { value: new THREE.Color('#06395a') },
+    uShallow: { value: new THREE.Color('#19a8e0') },
+    uFoam: { value: new THREE.Color('#fff4dc') },
     uOpacity: { value: waveOpacity },
     uMouse: { value: new THREE.Vector2(0, 0) },
   };
