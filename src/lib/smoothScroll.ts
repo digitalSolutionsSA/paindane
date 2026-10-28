@@ -36,15 +36,32 @@ export const startScroll = () => lenis?.start();
  */
 export function useSmoothScroll() {
   useEffect(() => {
-    // A reload always starts at the hero: drop any #section from the URL and go to the very top.
-    // (Following a link like /#welcome from another page still lands on that section.)
+    // Every visit starts at the very top: a new visit, a reload, coming back with Back/Forward, or arriving
+    // from an old or shared link with a #section. The one exception is a link from another page of this site
+    // (e.g. "Enquire Now" on the Gallery page), which still lands on its section.
     const nav = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined;
-    if (nav?.type === 'reload' && window.location.hash) {
+    const fromOwnPage = (() => {
+      try {
+        return nav?.type === 'navigate' && !!document.referrer && new URL(document.referrer).origin === window.location.origin;
+      } catch {
+        return false;
+      }
+    })();
+    if (window.location.hash && !fromOwnPage) {
       history.replaceState(null, '', window.location.pathname + window.location.search);
     }
     if (!window.location.hash) window.scrollTo(0, 0);
+    // Pages restored from the browser's back/forward cache keep their old scroll position – reset that too
+    const onPageShow = (e: PageTransitionEvent) => {
+      if (!e.persisted) return;
+      if (lenis) lenis.scrollTo(0, { immediate: true });
+      else window.scrollTo(0, 0);
+    };
+    window.addEventListener('pageshow', onPageShow);
 
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return () => window.removeEventListener('pageshow', onPageShow);
+    }
 
     const instance = new Lenis({ duration: 1.25, easing: (t) => 1 - Math.pow(1 - t, 4), wheelMultiplier: 1, touchMultiplier: 1.4 });
     lenis = instance;
@@ -81,6 +98,7 @@ export function useSmoothScroll() {
     }
 
     return () => {
+      window.removeEventListener('pageshow', onPageShow);
       document.removeEventListener('click', onClick);
       gsap.ticker.remove(raf);
       instance.destroy();
