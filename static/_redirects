@@ -1,0 +1,125 @@
+# Old website addresses → the matching part of the new site (301 = moved permanently, so Google updates too).
+# Netlify reads this file from the site root; real files (gallery.html, privacy.html…) always win over these rules.
+# Anything not listed here falls through to the branded /404.html page.
+
+# --- Paindane & Pleasure Bay (Explore section tabs) ---
+/paindane                              /#paindane          301
+/paindane.html                         /#paindane          301
+/paindane-accommodation*               /#paindane          301
+/index.php/paindane/*                  /#paindane          301
+/index.php/paindane-accommodation/*    /#paindane          301
+/pleasure-bay                          /#pleasure-bay      301
+/pleasure-bay.html                     /#pleasure-bay      301
+/pleasurebay.html                      /#pleasure-bay      301
+/pleasure-bay-accommodation*           /#pleasure-bay      301
+/index.php/pleasure-bay/*              /#pleasure-bay      301
+/index.php/pleasure-bay-accommodation/* /#pleasure-bay     301
+
+# --- About / activities / getting there ---
+/about                                 /#welcome           301
+/about.html                            /#welcome           301
+/about-us.html                         /#welcome           301
+/the-resort/about-paindane*            /#welcome           301
+/index.php/the-resort/about-paindane   /#welcome           301
+/mozambique.html                       /#explore           301
+/activities                            /#explore           301
+/activities.html                       /#explore           301
+/things-to-do.html                     /#explore           301
+/beach-hiking.html                     /#explore           301
+/fishing-bonanza-2024.html             /#explore           301
+/student-bash.html                     /#explore           301
+/the-resort/things-to-do*              /#explore           301
+/the-resort/locality-map*              /#contact           301
+/index.php/activities/*                /#explore           301
+/index.php/the-resort/things-to-do     /#explore           301
+/index.php/the-resort/locality-map     /#contact           301
+/visitors-info/*                       /#explore           301
+/index.php/visitors-info/*             /#explore           301
+
+# --- Accommodation & prices ---
+/accommodation                         /#accommodation     301
+/accommodation.html                    /#accommodation     301
+/chalets                               /#accommodation     301
+/chalets.html                          /#accommodation     301
+/rates                                 /#accommodation     301
+/rates.html                            /#accommodation     301
+/prices.htm                            /#accommodation     301
+/prices.html                           /#accommodation     301
+/pricelist/*                           /#accommodation     301
+/the-resort/accommodation*             /#accommodation     301
+/index.php/accommodation/*             /#accommodation     301
+/index.php/chalets                     /#accommodation     301
+/index.php/the-resort/accommodation    /#accommodation     301
+
+# --- Bookings & contact → enquiry form ---
+/book                                  /#enquire           301
+/booking.html                          /#enquire           301
+/bookings                              /#enquire           301
+/bookings.html                         /#enquire           301
+/enquire                               /#enquire           301
+/enquiry.html                          /#enquire           301
+/contact                               /#enquire           301
+/contact.html                          /#enquire           301
+/contact.htm                           /#enquire           301
+/contact-us                            /#enquire           301
+/contact-us.html                       /#enquire           301
+/contact-details*                      /#enquire           301
+/index.php/bookings/*                  /#enquire           301
+/index.php/contact-us/*                /#enquire           301
+/index.php/contact-details*            /#enquire           301
+
+# --- Gallery & legal ---
+/photo-gallery*                        /gallery            301
+/photos.html                           /gallery            301
+/index.php/gallery/*                   /gallery            301
+/index.php/photo-gallery               /gallery            301
+/privacy-policy                        /privacy            301
+/privacy-policy.html                   /privacy            301
+/terms.html                            /disclaimer         301
+
+# --- Old downloads → travel tips PDF ---
+/downloads*                            /Hot-Tips-for-Traveling-in-Mozambique.pdf   301
+/docman                                /Hot-Tips-for-Traveling-in-Mozambique.pdf   301
+/index.php/downloads*                  /Hot-Tips-for-Traveling-in-Mozambique.pdf   301
+/index.php/docman                      /Hot-Tips-for-Traveling-in-Mozambique.pdf   301
+
+# --- Old home pages and Joomla/CMS leftovers → home ---
+/home                                  /                   301
+/home.htm                              /                   301
+/home.html                             /                   301
+/index.htm                             /                   301
+/index.php                             /                   301
+/index2.php                            /                   301
+/index.php/*                           /                   301
+/content/*                             /                   301
+/component/*                           /                   301
+/PAGE1.HTM                             /                   301
+/PAGE2.HTM                             /                   301
+/PAGE3.HTM                             /                   301
+/PAGE4.HTM                             /                   301
+/PAGE5.HTM                             /                   301
+/PAGE6.HTM                             /                   301
+/PAGE7.HTM                             /                   301
+/PAGE8.HTM                             /                   301
+/PAGE9.HTM                             /                   301
+/PAGE10.HTM                            /                   301
+/PAGE11.HTM                            /                   301
+/PAGE12.HTM                            /                   301
+/PAGE13.HTM                            /                   301
+/PAGE14.HTM                            /                   301
+/PAGE15.HTM                            /                   301
+/PAGE16.HTM                            /                   301
+/PAGE17.HTM                            /                   301
+/PAGE18.HTM                            /                   301
+/PAGE19.HTM                            /                   301
+/PAGE20.HTM                            /                   301
+/PAGE21.HTM                            /                   301
+/PAGE22.HTM                            /                   301
+/PAGE23.HTM                            /                   301
+/PAGE24.HTM                            /                   301
+/PAGE25.HTM                            /                   301
+/PAGE26.HTM                            /                   301
+/PAGE27.HTM                            /                   301
+/PAGE28.HTM                            /                   301
+/PAGE29.HTM                            /                   301
+/PAGE30.HTM                            /                   301

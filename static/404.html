@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page not found | Tan ‘n Biki</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500..700&family=Nunito:wght@400..800&display=swap" rel="stylesheet" />
+    <style>
+      /* Shown by Netlify for any address that isn't part of the site (and isn't an old address we redirect) */
+      :root {
+        --navy: #0b6aa2;
+        --navy-deep: #06395a;
+        --sun: #ffc21a;
+        --orange: #ff8a1f;
+        --cream: #fffaf1;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100svh;
+        display: grid;
+        place-items: center;
+        padding: 32px 16px;
+        font-family: 'Nunito', system-ui, sans-serif;
+        color: #fff;
+        text-align: center;
+        background:
+          radial-gradient(ellipse at 50% 0%, rgba(255, 194, 26, 0.25), transparent 55%),
+          linear-gradient(180deg, #1c93c4 0%, #0b6aa2 45%, #06395a 100%);
+      }
+      main {
+        max-width: 560px;
+      }
+      .logo {
+        width: min(280px, 70vw);
+        height: auto;
+        padding: 14px 18px;
+        border-radius: 22px;
+        background: var(--cream);
+        box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.6);
+      }
+      .code {
+        margin: 28px 0 0;
+        font-family: 'Fredoka', sans-serif;
+        font-weight: 700;
+        font-size: clamp(4.5rem, 18vw, 8rem);
+        line-height: 1;
+        color: var(--sun);
+        text-shadow: 0 10px 40px rgba(0, 20, 40, 0.45);
+      }
+      h1 {
+        margin: 6px 0 10px;
+        font-family: 'Fredoka', sans-serif;
+        font-size: clamp(1.6rem, 5vw, 2.3rem);
+      }
+      p {
+        margin: 0 auto;
+        max-width: 440px;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .btns {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 28px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 26px;
+        border-radius: 999px;
+        font-family: 'Fredoka', sans-serif;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #fff;
+        transition: transform 0.2s;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+      .btn-sun {
+        background: linear-gradient(180deg, #ffb52e 0%, #ff8a1f 55%, #ef6a0e 100%);
+        box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.45), 0 14px 30px -12px rgba(239, 106, 14, 0.75);
+      }
+      .btn-ghost {
+        border: 1.5px solid rgba(255, 255, 255, 0.6);
+        background: rgba(255, 255, 255, 0.12);
+      }
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px 18px;
+        margin-top: 26px;
+        font-weight: 700;
+      }
+      nav a {
+        color: var(--sun);
+        text-decoration: none;
+      }
+      nav a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a href="/"><img class="logo" src="/images/opt/logo-720.webp" alt="Tan ‘n Biki" width="720" height="243" /></a>
+      <p class="code">404</p>
+      <h1>This page has washed away</h1>
+      <p>The page you were looking for isn’t here any more – our website has a new home. Everything you need is just a tap away.</p>
+      <div class="btns">
+        <a class="btn btn-sun" href="/">Go to the homepage</a>
+        <a class="btn btn-ghost" href="/#enquire">Enquire now</a>
+      </div>
+      <nav aria-label="Popular pages">
+        <a href="/#paindane">Paindane</a>
+        <a href="/#pleasure-bay">Pleasure Bay</a>
+        <a href="/#accommodation">Accommodation</a>
+        <a href="/gallery">Gallery</a>
+        <a href="https://wa.me/27713608554">WhatsApp us</a>
+      </nav>
+    </main>
+  </body>
+</html>
