@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { logoUrl } from './Picture';
+import { Logo } from './Picture';
 
 /** Curtain intro: logo fades in, then two panels slide away. */
 export default function Preloader() {
@@ -31,7 +31,7 @@ export default function Preloader() {
       <div className="pl-panel pl-panel--top" />
       <div className="pl-panel pl-panel--bottom" />
       <div className="pl-inner">
-        <img className="pl-logo" src={logoUrl()} alt="" />
+        <Logo className="pl-logo" sizes="(max-width: 472px) 72vw, 340px" alt="" />
         <div className="pl-bar">
           <span />
         </div>

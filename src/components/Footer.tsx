@@ -1,6 +1,6 @@
 import { brand, contact, footer, nav } from '../content';
 import { Facebook, Instagram, Mail, Phone, Pin, WhatsApp } from './Icons';
-import { logoUrl } from './Picture';
+import { Logo } from './Picture';
 
 export default function Footer({ base = '' }: { base?: string }) {
   return (
@@ -19,7 +19,7 @@ export default function Footer({ base = '' }: { base?: string }) {
       </div>
       <div className="container footer-grid">
         <div className="footer-logo sr-up">
-          <img src={logoUrl()} alt={brand.name} width={1935} height={654} loading="lazy" decoding="async" />
+          <Logo sizes="280px" alt={brand.name} loading="lazy" decoding="async" />
         </div>
         <div className="sr-up">
           <ul className="quick-links">

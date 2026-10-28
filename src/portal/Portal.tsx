@@ -2,7 +2,7 @@ import { useEffect, useState, type FormEvent } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { isSupabaseConfigured, supabase } from '../lib/supabase';
 import Bookings from './Bookings';
-import { logoUrl } from '../components/Picture';
+import { Logo } from '../components/Picture';
 import Calendar from './Calendar';
 import NewBooking from './NewBooking';
 import Rates from './Rates';
@@ -26,7 +26,7 @@ function Shell({ children, onSignOut, email }: { children: React.ReactNode; onSi
     <div className="portal">
       <header className="pt-header">
         <div className="pt-brand">
-          <img src={logoUrl()} alt="" />
+          <Logo sizes="120px" alt="" />
           <span>Staff portal</span>
         </div>
         {onSignOut && (

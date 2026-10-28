@@ -22,9 +22,11 @@
     <meta name="twitter:title" content="Tan ‘n Biki, Accommodation in Paindane, Inhambane, Mozambique" />
     <meta name="twitter:description" content="Beachfront chalets, campsites and coral reefs at Paindane Beach Resort and Pleasure Bay Resort, 28 km south of Inhambane, Mozambique." />
     <meta name="twitter:image" content="https://paindane.com/images/og-paindane.jpg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400..700&family=Nunito:wght@400..800&display=swap" rel="stylesheet" />
+    <link rel="preload" href="/fonts/nunito-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/fredoka-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" as="image" type="image/avif" imagesrcset="/images/opt/logo-360.avif 360w, /images/opt/logo-720.avif 720w" imagesizes="(max-width: 472px) 72vw, 340px" />
+    <!-- The first photo, fetched straight away instead of after the scripts have run -->
+    <link rel="preload" as="image" type="image/avif" imagesrcset="/images/opt/hero/hero-1-640.avif 640w, /images/opt/hero/hero-1-1080.avif 1080w, /images/opt/hero/hero-1-1600.avif 1600w, /images/opt/hero/hero-1-1920.avif 1920w" imagesizes="100vw" fetchpriority="high" />
   </head>
   <body>
     <div id="root"></div>

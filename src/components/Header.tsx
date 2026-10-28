@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { brand, contact, nav } from '../content';
 import { Close, Mail, Menu, Phone } from './Icons';
-import { logoUrl } from './Picture';
+import { Logo } from './Picture';
 
 /** `base` prefixes the section links, e.g. "/" on pages other than the home page. */
 export default function Header({ base = '' }: { base?: string }) {
@@ -55,7 +55,7 @@ export default function Header({ base = '' }: { base?: string }) {
       <div className="navbar">
         <div className="container navbar-inner">
           <a href={`${base}#top`} className="logo" aria-label={brand.name}>
-            <img src={logoUrl()} alt={brand.name} width={1935} height={654} {...({ fetchpriority: 'high' } as Record<string, string>)} />
+            <Logo sizes="190px" alt={brand.name} {...({ fetchpriority: 'high' } as Record<string, string>)} />
           </a>
           <nav className={`nav ${open ? 'is-open' : ''}`} aria-label="Main">
             {nav.map((n) => (

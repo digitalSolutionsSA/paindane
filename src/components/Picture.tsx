@@ -7,9 +7,6 @@ const images = manifest as Record<string, Entry>;
 /** Size info for an image path from content.ts (null if it hasn't been through `npm run images`) */
 export const imageInfo = (src: string): Entry | null => images[src] ?? null;
 
-/** URL of the optimised logo */
-export const logoUrl = () => largestWebp('/images/logo.webp');
-
 /** Largest generated WebP of an image, for CSS backgrounds and links */
 export const largestWebp = (src: string) => {
   const e = images[src];
@@ -17,6 +14,21 @@ export const largestWebp = (src: string) => {
 };
 
 const srcSet = (e: Entry, ext: string) => e.widths.map((w) => `${e.base}-${w}.${ext} ${w}w`).join(', ');
+
+/**
+ * The logo as AVIF (WebP fallback) at the smallest size that stays sharp – about half the bytes of the
+ * plain WebP. `sizes` is how wide it shows, e.g. '200px'.
+ */
+export function Logo({ sizes, ...img }: Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'srcSet' | 'sizes'> & { sizes: string }) {
+  const e = images['/images/logo.webp'];
+  if (!e) return <img src="/images/logo.webp" {...img} />;
+  return (
+    <picture>
+      <source type="image/avif" srcSet={srcSet(e, 'avif')} sizes={sizes} />
+      <img src={`${e.base}-${e.widths[0]}.webp`} srcSet={srcSet(e, 'webp')} sizes={sizes} width={e.w} height={e.h} {...img} />
+    </picture>
+  );
+}
 
 type ImgProps = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'srcSet' | 'sizes' | 'width' | 'height'> & Record<`data-${string}`, unknown>;
 

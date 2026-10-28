@@ -46,8 +46,8 @@ for (const file of files) {
   fs.mkdirSync(path.dirname(path.join(OUT, base)), { recursive: true });
   for (const w of widths) {
     const resized = sharp(file).rotate().resize({ width: w, withoutEnlargement: true });
-    await resized.clone().avif({ quality: 52, effort: 4 }).toFile(path.join(OUT, `${base}-${w}.avif`));
-    await resized.clone().webp({ quality: 74, effort: 5 }).toFile(path.join(OUT, `${base}-${w}.webp`));
+    await resized.clone().avif({ quality: 46, effort: 6 }).toFile(path.join(OUT, `${base}-${w}.avif`));
+    await resized.clone().webp({ quality: 70, effort: 6, smartSubsample: true }).toFile(path.join(OUT, `${base}-${w}.webp`));
   }
   const blur = await sharp(file).rotate().resize({ width: 24 }).webp({ quality: 40 }).toBuffer();
 
