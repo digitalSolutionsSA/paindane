@@ -1,15 +1,9 @@
 import { useState, type FormEvent } from 'react';
 import { contact, enquiryForm } from '../content';
+import DateRangePicker from './DateRangePicker';
 import { WhatsApp } from './Icons';
 
 type Status = { state: 'idle' } | { state: 'sending' } | { state: 'sent' } | { state: 'error'; message: string };
-
-const today = () => new Date().toISOString().slice(0, 10);
-const dayAfter = (iso: string) => {
-  const d = new Date(`${iso}T12:00:00Z`);
-  d.setUTCDate(d.getUTCDate() + 1);
-  return d.toISOString().slice(0, 10);
-};
 
 /**
  * Booking enquiry form. Posts to /api/enquiry (a Netlify Function), which emails the details to
@@ -17,10 +11,15 @@ const dayAfter = (iso: string) => {
  */
 export default function EnquiryForm() {
   const [status, setStatus] = useState<Status>({ state: 'idle' });
-  const [arrival, setArrival] = useState('');
+  const [dates, setDates] = useState({ arrival: '', departure: '' });
 
   const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // The calendar's fields are custom, so the browser can't require them – check here instead
+    if (!dates.arrival || !dates.departure) {
+      setStatus({ state: 'error', message: 'Please choose your arrival and departure dates.' });
+      return;
+    }
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form));
     setStatus({ state: 'sending' });
@@ -34,7 +33,7 @@ export default function EnquiryForm() {
       if (!res.ok) throw new Error(body.error || 'Something went wrong.');
       setStatus({ state: 'sent' });
       form.reset();
-      setArrival('');
+      setDates({ arrival: '', departure: '' });
     } catch (err) {
       setStatus({ state: 'error', message: err instanceof Error ? err.message : 'Something went wrong.' });
     }
@@ -88,16 +87,11 @@ export default function EnquiryForm() {
           </select>
         </label>
       </div>
-      <div className="grid-2">
-        <label className="field">
-          <span>Arrival *</span>
-          <input name="arrival" type="date" required min={today()} value={arrival} onChange={(e) => setArrival(e.target.value)} />
-        </label>
-        <label className="field">
-          <span>Departure *</span>
-          <input name="departure" type="date" required min={arrival ? dayAfter(arrival) : today()} />
-        </label>
-      </div>
+      <DateRangePicker
+        arrival={dates.arrival}
+        departure={dates.departure}
+        onChange={(arrival, departure) => setDates({ arrival, departure })}
+      />
       <div className="grid-3">
         <label className="field">
           <span>Adults *</span>
